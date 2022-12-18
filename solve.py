@@ -21,7 +21,11 @@ with open(fname, 'r') as f:
         if s != '\n':
             s  = s.split('\n')[0]
             print(s)
-            s = re.sub('(\d+)([^0-9+-/*=\s])', r'\1*\2', s)
+            s = re.sub('([a-z]{1})', r'\1*', s)
+            s = re.sub('\*$', '', s)
+            s = re.sub('([a-z])(\*)([+-=/\s])', r'\1\3', s)
+            s = re.sub('(\d+)([^0-9+-/*=\)\s])', r'\1*\2', s)
+            # print('parsed line:', s)
             eq = s.split('=')
             system.append(Eq(eval(eq[0]), eval(eq[1])))
         else:
