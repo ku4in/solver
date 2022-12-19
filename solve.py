@@ -1,26 +1,24 @@
 #!/usr/bin/env python3
+
 import sys
-
-if len(sys.argv) > 1:
-    fname = sys.argv[1]
-else:
-    fname = ''
-
 from sympy import *
 import string
 import re
+
+
+if len(sys.argv) > 1:
+    fname = sys.argv[1]
+    fil = open(fname, 'r')
+else:
+    fname = ''
+    fil = sys.stdin
 
 # Set the names of the variables: a = 'a', b = 'b', etc.
 for ch in string.ascii_lowercase:
     globals()[ch] = symbols(ch)
 
-if fname:
-    f = open(fname, 'r')
-else:
-    f = sys.stdin
-
 system = []
-while s:= f.readline():
+while s:= fil.readline():
     if s != '\n':
         s  = s.split('\n')[0]
         if fname: print(s)
@@ -37,3 +35,5 @@ else:
     if system:
         print(solve(system))
         print()
+
+fil.close()
