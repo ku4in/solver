@@ -30,7 +30,8 @@ while ss:= fil.readline():
     if ss != '\n':
         ss  = ss.split('\n')[0]
         if fname: print(ss)
-        # Excluding math function of subsequent processing by making them uppercase
+        # Excluding math function of subsequent processing by replacing them with <n> mark,
+        # where <n> is the number of function in MATH list
         dic = {}
         for ii, mm in enumerate(MATH):
             mat = None
